@@ -1,0 +1,88 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+/* ✅ บังคับ table ให้อยู่ตรงกลาง */
+.card table {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.login {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.desc {
+  font-style: italic;
+  color: gray;
+}
+
+.icon1 {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.icon2 {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  cursor: pointer;
+  object-fit: contain;
+}
+.icon3 {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.allicon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.contact-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  background: #0056b3;
+}
