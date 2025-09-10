@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do or Not To Do</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    #container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #ft_list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column-reverse; /* ทำให้ task ใหม่ขึ้นบน */
+    }
+    .todo {
+      background: #e0f7fa;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .todo:hover {
+      background: #b2ebf2;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      background: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>To Do List</h1>
+    <button onclick="newTodo()">New</button>
+    <div id="ft_list"></div>
+  </div>
+  <script src="todo.js"></script>
+</body>
+</html>
