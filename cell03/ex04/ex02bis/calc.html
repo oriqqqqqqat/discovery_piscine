@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator - jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    input, select {
+      margin: 5px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <form id="calcForm">
+      <input type="text" id="left" placeholder="Left number">
+      <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+      <input type="text" id="right" placeholder="Right number">
+      <input type="submit" value="Try me!">
+    </form>
+  </div>
+
+  <script>
+    $("#calcForm").on("submit", function(e) {
+      e.preventDefault();
+
+      let left = Number($("#left").val());
+      let right = Number($("#right").val());
+      let operator = $("#operator").val();
+
+      // ตรวจสอบจำนวนเต็มบวก
+      if (!Number.isInteger(left) || !Number.isInteger(right) || left < 0 || right < 0) {
+        alert("Error :(");
+        return;
+      }
+
+      // ตรวจสอบการหาร/โมดูลัสด้วย 0
+      if ((operator === "/" || operator === "%") && right === 0) {
+        alert("It's over 9000!");
+        console.log("It's over 9000!");
+        return;
+      }
+
+      // คำนวณผลลัพธ์
+      let result;
+      switch(operator) {
+        case "+": result = left + right; break;
+        case "-": result = left - right; break;
+        case "*": result = left * right; break;
+        case "/": result = left / right; break;
+        case "%": result = left % right; break;
+      }
+
+      alert("Result: " + result);
+      console.log("Result:", result);
+    });
+
+    // เตือนทุก 30 วินาที
+    setInterval(() => {
+      alert("Please, use me...");
+    }, 30000);
+  </script>
+</body>
+</html>

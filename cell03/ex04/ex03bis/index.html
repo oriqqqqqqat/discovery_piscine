@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do or Not To Do</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    #container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #ft_list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column-reverse; /* task ใหม่อยู่บน */
+    }
+    .todo {
+      background: #e0f7fa;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .todo:hover {
+      background: #b2ebf2;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      background: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>To Do List</h1>
+    <button id="newBtn">New</button>
+    <div id="ft_list"></div>
+  </div>
+
+  <script>
+    // โหลด todos จาก cookie ตอนเปิดหน้า
+    $(document).ready(function() {
+      loadTodos();
+
+      // ปุ่ม New
+      $("#newBtn").on("click", function() {
+        let task = prompt("Enter a new TO DO:");
+        if (task && task.trim() !== "") {
+          addTodo(task);
+          saveTodos();
+        }
+      });
+
+      // ลบ todo เมื่อกด (ใช้ delegation)
+      $("#ft_list").on("click", ".todo", function() {
+        if (confirm("Do you want to remove this TO DO?")) {
+          $(this).remove();
+          saveTodos();
+        }
+      });
+    });
+
+    // เพิ่ม todo
+    function addTodo(text) {
+      let $div = $("<div></div>").addClass("todo").text(text);
+      $("#ft_list").append($div);
+    }
+
+    // บันทึก todos ลง cookie
+    function saveTodos() {
+      let todos = [];
+      $("#ft_list .todo").each(function() {
+        todos.push($(this).text());
+      });
+      document.cookie = "todos=" + JSON.stringify(todos) + ";path=/";
+    }
+
+    // โหลด todos จาก cookie
+    function loadTodos() {
+      let cookies = document.cookie.split(";");
+      for (let c of cookies) {
+        let [name, value] = c.trim().split("=");
+        if (name === "todos") {
+          let todos = JSON.parse(value);
+          todos.forEach(t => addTodo(t));
+        }
+      }
+    }
+  </script>
+</body>
+</html>
