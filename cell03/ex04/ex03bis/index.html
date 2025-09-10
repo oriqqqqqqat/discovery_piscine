@@ -25,7 +25,7 @@
     #ft_list {
       margin-top: 20px;
       display: flex;
-      flex-direction: column-reverse; /* task ใหม่อยู่บน */
+      flex-direction: column-reverse; 
     }
     .todo {
       background: #e0f7fa;
@@ -61,11 +61,10 @@
   </div>
 
   <script>
-    // โหลด todos จาก cookie ตอนเปิดหน้า
+
     $(document).ready(function() {
       loadTodos();
 
-      // ปุ่ม New
       $("#newBtn").on("click", function() {
         let task = prompt("Enter a new TO DO:");
         if (task && task.trim() !== "") {
@@ -74,7 +73,6 @@
         }
       });
 
-      // ลบ todo เมื่อกด (ใช้ delegation)
       $("#ft_list").on("click", ".todo", function() {
         if (confirm("Do you want to remove this TO DO?")) {
           $(this).remove();
@@ -83,13 +81,11 @@
       });
     });
 
-    // เพิ่ม todo
     function addTodo(text) {
       let $div = $("<div></div>").addClass("todo").text(text);
       $("#ft_list").append($div);
     }
 
-    // บันทึก todos ลง cookie
     function saveTodos() {
       let todos = [];
       $("#ft_list .todo").each(function() {
@@ -98,7 +94,6 @@
       document.cookie = "todos=" + JSON.stringify(todos) + ";path=/";
     }
 
-    // โหลด todos จาก cookie
     function loadTodos() {
       let cookies = document.cookie.split(";");
       for (let c of cookies) {
