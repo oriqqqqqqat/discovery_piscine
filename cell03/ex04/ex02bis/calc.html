@@ -49,20 +49,17 @@
       let right = Number($("#right").val());
       let operator = $("#operator").val();
 
-      // ตรวจสอบจำนวนเต็มบวก
       if (!Number.isInteger(left) || !Number.isInteger(right) || left < 0 || right < 0) {
         alert("Error :(");
         return;
       }
 
-      // ตรวจสอบการหาร/โมดูลัสด้วย 0
       if ((operator === "/" || operator === "%") && right === 0) {
         alert("It's over 9000!");
         console.log("It's over 9000!");
         return;
       }
 
-      // คำนวณผลลัพธ์
       let result;
       switch(operator) {
         case "+": result = left + right; break;
@@ -76,7 +73,6 @@
       console.log("Result:", result);
     });
 
-    // เตือนทุก 30 วินาที
     setInterval(() => {
       alert("Please, use me...");
     }, 30000);
